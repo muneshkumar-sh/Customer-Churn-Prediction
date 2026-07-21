@@ -337,15 +337,12 @@ Possible improvements to the project include:
 
 ## Live Demo
 
-The live application link will be added after deployment.
+The Customer Churn Prediction application is deployed on PythonAnywhere and can be accessed online:
 
----
+**Live Application:**  
+https://munesh2k.pythonanywhere.com/
 
-## Author
-
-**Munesh Kumar**
-
-Software Engineering Student | Python | Machine Learning | Artificial Intelligence
+Users can enter customer information through the web interface and receive a real-time churn prediction along with the model's confidence score.
 
 ---
 
