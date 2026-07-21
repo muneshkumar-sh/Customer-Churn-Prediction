@@ -13,10 +13,13 @@ from pathlib import Path
 # Load the Trained Pipeline
 # ==========================================================
 
-# Load the saved machine learning pipeline
+# Get the directory where prediction.py is located
+BASE_DIR = Path(__file__).resolve().parent
 
-MODEL_PATH = Path(__file__).parent / "churn_pipeline.pkl"
+# Create complete path to the trained model
+MODEL_PATH = BASE_DIR / "churn_pipeline.pkl"
 
+# Load the trained pipeline
 pipeline = joblib.load(MODEL_PATH)
 
 
@@ -25,31 +28,17 @@ pipeline = joblib.load(MODEL_PATH)
 # ==========================================================
 
 def predict_churn(customer_data):
-    """
-    Predict whether a customer will churn.
 
-    Parameters:
-        customer_data (dict):
-            Dictionary containing customer information.
-
-    Returns:
-        prediction (str):
-            Churn or No Churn
-
-        probability (float):
-            Prediction confidence (%)
-    """
-
-    # Convert dictionary into DataFrame
+    # Convert customer dictionary into DataFrame
     customer_df = pd.DataFrame([customer_data])
 
     # Make prediction
     prediction = pipeline.predict(customer_df)[0]
 
-    # Prediction probability
+    # Get prediction probabilities
     probability = pipeline.predict_proba(customer_df)[0]
 
-    # Convert prediction to readable text
+    # Convert result into readable format
     if prediction == 1:
         result = "Customer is likely to Churn"
         confidence = probability[1] * 100
